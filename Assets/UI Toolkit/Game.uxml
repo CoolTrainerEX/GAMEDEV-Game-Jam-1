@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Main.uss?fileID=7433441132597879392&amp;guid=983bcf173b7a8654aa56edc791fa5771&amp;type=3#Main"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Game.uss?fileID=7433441132597879392&amp;guid=c8bc8d40edd0f9c48bbc3f078d63b0bf&amp;type=3#Game"/>
+</ui:UXML>
