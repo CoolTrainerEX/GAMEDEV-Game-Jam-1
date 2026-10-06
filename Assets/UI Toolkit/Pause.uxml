@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style
+        src="project://database/Assets/UI%20Toolkit/Main.uss?fileID=7433441132597879392&amp;guid=983bcf173b7a8654aa56edc791fa5771&amp;type=3#Main" />
+    <Style
+        src="project://database/Assets/UI%20Toolkit/Pause.uss?fileID=7433441132597879392&amp;guid=c59522d1706fb8f408467d44b6002a2c&amp;type=3#Pause" />
+    <ui:ScrollView name="buttons">
+        <ui:Button text="Back To Game" name="Back" />
+        <ui:Button text="Exit to Main Menu" name="Exit" />
+    </ui:ScrollView>
+</ui:UXML>

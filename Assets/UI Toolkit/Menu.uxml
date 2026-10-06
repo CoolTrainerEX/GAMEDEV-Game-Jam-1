@@ -1,4 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Main.uss?fileID=7433441132597879392&amp;guid=983bcf173b7a8654aa56edc791fa5771&amp;type=3#Main"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Main.uss?fileID=7433441132597879392&amp;guid=983bcf173b7a8654aa56edc791fa5771&amp;type=3#Main"/>
     <Style src="project://database/Assets/UI%20Toolkit/Menu.uss?fileID=7433441132597879392&amp;guid=c2450e06730ffd34797a7ce80e543e0f&amp;type=3#Menu"/>
+    <ui:VisualElement name="title">
+        <ui:Image source="project://database/Assets/Images/Icon.png?fileID=-2278566297644842510&amp;guid=c7a5d007627cdf842b414a9f2f48f87c&amp;type=3#Icon_0" scale-mode="ScaleToFit" style="width: 50px;"/>
+        <ui:Label text="Pac-Man"/>
+    </ui:VisualElement>
+    <ui:ScrollView name="buttons">
+        <ui:Button text="Play" name="Play"/>
+        <ui:Button text="Exit" name="Exit"/>
+    </ui:ScrollView>
 </ui:UXML>

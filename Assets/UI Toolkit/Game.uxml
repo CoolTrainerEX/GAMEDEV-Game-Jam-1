@@ -1,4 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="HUD" src="project://database/Assets/UI%20Toolkit/HUD.uxml?fileID=9197481963319205126&amp;guid=de31f40da7d40a240b7c341957466d74&amp;type=3#HUD"/>
+    <ui:Template name="Pause" src="project://database/Assets/UI%20Toolkit/Pause.uxml?fileID=9197481963319205126&amp;guid=72666ee7a3a91e542a241baab79b9e3d&amp;type=3#Pause"/>
     <Style src="project://database/Assets/UI%20Toolkit/Main.uss?fileID=7433441132597879392&amp;guid=983bcf173b7a8654aa56edc791fa5771&amp;type=3#Main"/>
     <Style src="project://database/Assets/UI%20Toolkit/Game.uss?fileID=7433441132597879392&amp;guid=c8bc8d40edd0f9c48bbc3f078d63b0bf&amp;type=3#Game"/>
+    <ui:Instance template="HUD" name="HUD"/>
+    <ui:Instance template="Pause" name="Pause" style="display: none;"/>
 </ui:UXML>

@@ -1,3 +1,34 @@
-:root {
+#buttons {
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    width: 50%;
+    align-self: center;
+}
 
+Button {
+    font-size: 24px;
+    background-color: rgb(32, 75, 157);
+    color: rgb(255, 255, 255);
+    border-left-color: rgb(255, 212, 41);
+    border-right-color: rgb(255, 212, 41);
+    border-top-color: rgb(255, 212, 41);
+    border-bottom-color: rgb(255, 212, 41);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition-duration: 0.5s;
+}
+
+Button:hover,
+Button:focus {
+    background-color: rgb(0, 17, 49);
+    transition-duration: 0.5s;
+    font-size: 36px;
 }
