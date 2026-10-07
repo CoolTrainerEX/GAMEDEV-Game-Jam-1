@@ -1,4 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Main.uss?fileID=7433441132597879392&amp;guid=983bcf173b7a8654aa56edc791fa5771&amp;type=3#Main"/>
     <Style src="project://database/Assets/UI%20Toolkit/HUD.uss?fileID=7433441132597879392&amp;guid=2f24b82f3c45d1c43be303ff2ace4d9b&amp;type=3#HUD"/>
+    <ui:VisualElement name="Text" picking-mode="Ignore" style="flex-grow: 1; left: auto; max-width: 285px; max-height: 195px; bottom: auto; top: 224px; display: flex;">
+        <ui:Label text="Pellets: " name="PelletText" style="width: 190px; background-color: rgba(255, 255, 255, 0.196); top: auto;"/>
+        <ui:Label text="Generators:" name="GeneratorText" style="background-color: rgba(255, 255, 255, 0.196); width: 190px; height: 25px; top: auto;"/>
+    </ui:VisualElement>
+    <ui:VisualElement picking-mode="Ignore" name="Prompt" style="flex-grow: 1; align-items: center; justify-content: center; display: none; top: -35px;">
+        <ui:Label text="Hold E " name="PromptLabel" enabled="true" style="width: 189px; background-color: rgba(255, 255, 255, 0.196); -unity-text-align: lower-center; white-space: normal; position: relative; top: auto; left: 0; bottom: 0; text-overflow: ellipsis; right: auto; display: flex; overflow: visible; justify-content: center;"/>
+        <ui:ProgressBar value="0" title="GeneratorProgress" name="RepairProgressBar" high-value="1" style="right: auto; left: auto; max-height: 0%; max-width: 100%; display: flex; bottom: 0; flex-direction: row-reverse; align-self: center; align-items: flex-start; justify-content: space-around; top: auto; width: 145px; background-color: rgb(255, 247, 247); -unity-text-align: upper-left;"/>
+    </ui:VisualElement>
 </ui:UXML>

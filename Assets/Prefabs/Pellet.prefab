@@ -8671,3 +8671,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed1a7a182c1143199dfbc6ae718524d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pellet
+  pelletColor: 0

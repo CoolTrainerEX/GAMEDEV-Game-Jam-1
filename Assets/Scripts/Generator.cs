@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class Generator : MonoBehaviour
@@ -8,22 +7,16 @@ public class Generator : MonoBehaviour
     public float timeToRepair = 10f; 
     public Key repairKey = Key.E; 
     
-    [Header("UI")]
-    public Slider progressBar; 
+    [Header("Visuals")]
     public Light completionLight; 
     
-    public GameObject repairPromptUI; 
-
     private float currentProgress = 0f;
     private bool isRepaired = false;
     private bool playerInRange = false;
 
     void Start()
     {
-        if (progressBar != null) progressBar.value = 0f;
         if (completionLight != null) completionLight.enabled = false;
-        
-        if (repairPromptUI != null) repairPromptUI.SetActive(false); 
     }
 
     void Update()
@@ -35,9 +28,10 @@ public class Generator : MonoBehaviour
         if (playerInRange && isHoldingKey)
         {
             currentProgress += Time.deltaTime;
-            UpdateUI();
 
-            if (repairPromptUI != null) repairPromptUI.SetActive(false);
+            GameManager.Instance.UpdateRepairProgress(true, currentProgress / timeToRepair);
+
+            GameManager.Instance.SetPromptVisibility(false); 
 
             if (currentProgress >= timeToRepair)
             {
@@ -46,7 +40,8 @@ public class Generator : MonoBehaviour
         }
         else if (playerInRange && !isHoldingKey)
         {
-            if (repairPromptUI != null) repairPromptUI.SetActive(true);
+            GameManager.Instance.UpdateRepairProgress(false, 0f);
+            GameManager.Instance.SetPromptVisibility(true, "Hold E to Repair");
         }
     }
 
@@ -55,10 +50,11 @@ public class Generator : MonoBehaviour
         isRepaired = true;
         
         if (completionLight != null) completionLight.enabled = true;
-        if (progressBar != null) progressBar.gameObject.SetActive(false); 
         
-        if (repairPromptUI != null) repairPromptUI.SetActive(false); 
-
+        GameManager.Instance.AddGenerator();
+        GameManager.Instance.SetPromptVisibility(false);
+        GameManager.Instance.UpdateRepairProgress(false, 0f);
+        
         Debug.Log("Generator Fully Repaired!");
     }
 
@@ -67,9 +63,7 @@ public class Generator : MonoBehaviour
         if (other.CompareTag("Player") && !isRepaired)
         {
             playerInRange = true;
-            if (progressBar != null) progressBar.gameObject.SetActive(true);
-            
-            if (repairPromptUI != null) repairPromptUI.SetActive(true); 
+            GameManager.Instance.SetPromptVisibility(true, "Hold E to Repair");
         }
     }
 
@@ -78,17 +72,8 @@ public class Generator : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            if (progressBar != null) progressBar.gameObject.SetActive(false);
-            
-            if (repairPromptUI != null) repairPromptUI.SetActive(false); 
-        }
-    }
-
-    void UpdateUI()
-    {
-        if (progressBar != null)
-        {
-            progressBar.value = currentProgress / timeToRepair;
+            GameManager.Instance.SetPromptVisibility(false);
+            GameManager.Instance.UpdateRepairProgress(false, 0f);
         }
     }
 }

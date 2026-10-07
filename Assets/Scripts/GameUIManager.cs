@@ -13,12 +13,25 @@ public class GameUIManager : MonoBehaviour
     private ControlsManager controls;
     private PauseInput pauseInput;
     private PanelRenderer panelRenderer;
-    private TemplateContainer hudElement;
-    private TemplateContainer pauseElement;
+    
+    private VisualElement hudElement;
+    private VisualElement pauseElement;
+
+    private VisualElement promptElement;
+    private VisualElement textElement;
+
+    private Label pelletLabel;
+    private Label generatorLabel;
+    private Label promptLabel;
+    private bool isPromptActive = false;
+    private ProgressBar repairProgressBar;
+    private bool isProgressBarActive = false;
+    private Button backButton;
+    private Button exitButton;
+
     private bool paused = false;
     private int uiVersion = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controls = GetComponent<ControlsManager>();
@@ -26,16 +39,31 @@ public class GameUIManager : MonoBehaviour
         panelRenderer = GetComponent<PanelRenderer>();
 
         panelRenderer.RegisterUIReloadCallback(OnUIReload);
-
         controls.MouseLocked = true;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnScoreChanged += UpdateUI;
+            GameManager.Instance.OnPromptVisibilityChanged += HandlePromptVisibility;
+            GameManager.Instance.OnRepairProgressChanged += HandleRepairProgress;
+        }
+        
+        UpdateUI();
     }
 
     void OnDestroy()
     {
-        panelRenderer.UnregisterUIReloadCallback(OnUIReload);
+        if (panelRenderer != null)
+            panelRenderer.UnregisterUIReloadCallback(OnUIReload);
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnScoreChanged -= UpdateUI;
+            GameManager.Instance.OnPromptVisibilityChanged -= HandlePromptVisibility;
+            GameManager.Instance.OnRepairProgressChanged -= HandleRepairProgress;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (pauseElement == null) return;
@@ -43,7 +71,9 @@ public class GameUIManager : MonoBehaviour
         if (pauseInput.IsPaused && !paused)
         {
             Time.timeScale = 0;
-            hudElement.style.display = DisplayStyle.None;
+
+            if (hudElement != null) hudElement.style.display = DisplayStyle.None;
+
             pauseElement.style.display = DisplayStyle.Flex;
             controls.MouseLocked = false;
 
@@ -52,7 +82,15 @@ public class GameUIManager : MonoBehaviour
         else if (!pauseInput.IsPaused && paused)
         {
             Time.timeScale = 1;
-            hudElement.style.display = DisplayStyle.Flex;
+
+            if (hudElement != null) hudElement.style.display = DisplayStyle.Flex;
+            
+            if (promptLabel != null && isPromptActive) promptLabel.style.display = DisplayStyle.Flex;
+            if (repairProgressBar != null && isProgressBarActive) repairProgressBar.style.display = DisplayStyle.Flex;
+            
+            if (promptElement != null && (isPromptActive || isProgressBarActive)) 
+                promptElement.style.display = DisplayStyle.Flex;
+
             pauseElement.style.display = DisplayStyle.None;
             controls.MouseLocked = true;
 
@@ -60,19 +98,92 @@ public class GameUIManager : MonoBehaviour
         }
 
         paused = pauseInput.IsPaused;
-
     }
 
     private void OnUIReload(PanelRenderer panelRenderer, VisualElement rootElement, int version)
     {
         if (uiVersion == version) return;
-
         uiVersion = version;
-        hudElement = rootElement.Q<TemplateContainer>("HUD");
-        pauseElement = rootElement.Q<TemplateContainer>("Pause");
+        
+        hudElement = rootElement.Q<VisualElement>("HUD"); 
+        pauseElement = rootElement.Q<VisualElement>("Pause");
 
-        rootElement.Q<Button>("Back").clicked += OnPlay;
-        rootElement.Q<Button>("Exit").clicked += OnExit;
+        if (backButton != null) backButton.clicked -= OnPlay;
+        if (exitButton != null) exitButton.clicked -= OnExit;
+
+        backButton = rootElement.Q<Button>("Back");
+        exitButton = rootElement.Q<Button>("Exit");
+
+        if (backButton != null) backButton.clicked += OnPlay;
+        if (exitButton != null) exitButton.clicked += OnExit;
+
+        if (hudElement != null)
+        {
+            pelletLabel = hudElement.Q<Label>("PelletText");
+            generatorLabel = hudElement.Q<Label>("GeneratorText");
+            
+            promptElement = hudElement.Q<VisualElement>("Prompt"); 
+            textElement = hudElement.Q<VisualElement>("TextElement"); 
+            
+            promptLabel = hudElement.Q<Label>("PromptLabel");
+            repairProgressBar = hudElement.Q<ProgressBar>("RepairProgressBar");
+            
+            if (promptLabel == null) Debug.LogError("PromptLabel is MISSING in UI Builder!");
+            if (textElement == null) Debug.LogWarning("TextElement is missing (this might be okay if you didn't make a background box)");
+
+            UpdateUI();
+        }
+        else
+        {
+            Debug.LogError("Could not find the HUD template! Check the name in UI Builder.");
+        }
+    }
+
+    private void HandlePromptVisibility(bool isVisible, string message)
+    {
+        isPromptActive = isVisible;
+            
+        if (promptLabel != null) 
+        {
+            promptLabel.text = message;
+            promptLabel.style.display = (isVisible && !paused) ? DisplayStyle.Flex : DisplayStyle.None; 
+        }
+
+        if (promptElement != null) 
+            promptElement.style.display = ((isPromptActive || isProgressBarActive) && !paused) ? DisplayStyle.Flex : DisplayStyle.None;
+    }
+
+    private void HandleRepairProgress(bool isVisible, float progressPercent)
+    {
+        isProgressBarActive = isVisible;
+
+        if (repairProgressBar != null) 
+        {
+            repairProgressBar.value = progressPercent;
+            repairProgressBar.style.display = (isVisible && !paused) ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        if (promptElement != null)
+            promptElement.style.display = ((isPromptActive || isProgressBarActive) && !paused) ? DisplayStyle.Flex : DisplayStyle.None;
+    }
+
+    private void UpdateUI()
+    {
+        if (GameManager.Instance == null) return;
+
+        if (pelletLabel != null)
+        {
+            
+            pelletLabel.text = $"Red: {GameManager.Instance.redPellets}/{GameManager.Instance.totalNeeded}\n" +
+                               $"Pink: {GameManager.Instance.pinkPellets}/{GameManager.Instance.totalNeeded}\n" +
+                               $"Cyan: {GameManager.Instance.cyanPellets}/{GameManager.Instance.totalNeeded}\n" +
+                               $"Orange: {GameManager.Instance.orangePellets}/{GameManager.Instance.totalNeeded}";
+        }
+
+        if (generatorLabel != null)
+        {
+            generatorLabel.text = $"Generators: {GameManager.Instance.generatorsRepaired}";
+        }
     }
 
     private void OnPlay()
@@ -83,7 +194,6 @@ public class GameUIManager : MonoBehaviour
     private void OnExit()
     {
         Time.timeScale = 1;
-
         mixer.SetFloat("MasterVolume", 0);
         SceneManager.LoadScene("Menu");
     }

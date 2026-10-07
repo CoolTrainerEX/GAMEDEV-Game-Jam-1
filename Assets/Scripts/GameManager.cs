@@ -1,12 +1,35 @@
 using UnityEngine;
+using System; 
+
+public enum PelletColor { Red, Pink, Cyan, Orange }
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
 
-    public int pelletsCollected = 0;
-    public int totalPelletsNeeded = 25;
+    // 1. Create the Event
+    public Action OnScoreChanged;
+
+    [Header("Game State")]
+    public int redPellets = 0;
+    public int pinkPellets = 0;
+    public int cyanPellets = 0;
+    public int orangePellets = 0;
+    public int totalNeeded = 25; 
     public int generatorsRepaired = 0;
+
+    public Action<bool, string> OnPromptVisibilityChanged;
+    public Action<bool, float> OnRepairProgressChanged;
+
+    public void SetPromptVisibility(bool isVisible, string message = "")
+    {
+        OnPromptVisibilityChanged?.Invoke(isVisible, message);
+    }
+
+    public void UpdateRepairProgress(bool isVisible, float progressPercent)
+    {
+        OnRepairProgressChanged?.Invoke(isVisible, progressPercent);
+    }
 
     void Awake()
     {
@@ -15,29 +38,26 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return; 
         }
-
         Instance = this;
     }
 
-    public void AddPellet()
+    public void AddPellet(PelletColor color)
     {
-        pelletsCollected++;
-        UpdateUI();
-
-        if (pelletsCollected >= totalPelletsNeeded)
+        switch (color)
         {
-            Debug.Log("All pellets collected! Open the exit doors!");
+            case PelletColor.Red: redPellets++; break;
+            case PelletColor.Pink: pinkPellets++; break;
+            case PelletColor.Cyan: cyanPellets++; break;
+            case PelletColor.Orange: orangePellets++; break;
         }
-    }
-
-    void UpdateUI()
-    {
-        // UI code here
+        
+        OnScoreChanged?.Invoke();
     }
 
     public void AddGenerator()
     {
         generatorsRepaired++;
-        Debug.Log($"Generators repaired: {generatorsRepaired}");
+        
+        OnScoreChanged?.Invoke();
     }
 }
