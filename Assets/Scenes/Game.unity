@@ -3975,6 +3975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Generator
   timeToRepair: 3
   repairKey: 19
+  requiredPelletColor: 0
   completionLight: {fileID: 353516983}
 --- !u!135 &1648374442
 SphereCollider:
@@ -4477,7 +4478,7 @@ MonoBehaviour:
   pinkPellets: 0
   cyanPellets: 0
   orangePellets: 0
-  totalNeeded: 25
+  pelletsNeeded: 25
   generatorsRepaired: 0
 --- !u!1 &1891693606
 GameObject:

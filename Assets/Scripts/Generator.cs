@@ -7,6 +7,9 @@ public class Generator : MonoBehaviour
     public float timeToRepair = 10f; 
     public Key repairKey = Key.E; 
     
+    [Header("Pellet Requirements")]
+    public PelletColor requiredPelletColor = PelletColor.Red;
+    
     [Header("Visuals")]
     public Light completionLight; 
     
@@ -21,27 +24,49 @@ public class Generator : MonoBehaviour
 
     void Update()
     {
-        if (isRepaired) return;
+        if (isRepaired || !playerInRange) return;
 
+        bool hasEnough = HasEnoughPellets();
         bool isHoldingKey = Keyboard.current != null && Keyboard.current[repairKey].isPressed;
         
-        if (playerInRange && isHoldingKey)
+        if (hasEnough)
         {
-            currentProgress += Time.deltaTime;
-
-            GameManager.Instance.UpdateRepairProgress(true, currentProgress / timeToRepair);
-
-            GameManager.Instance.SetPromptVisibility(false); 
-
-            if (currentProgress >= timeToRepair)
+            if (isHoldingKey)
             {
-                CompleteGenerator();
+                currentProgress += Time.deltaTime;
+
+                GameManager.Instance.UpdateRepairProgress(true, currentProgress / timeToRepair);
+                GameManager.Instance.SetPromptVisibility(false); 
+
+                if (currentProgress >= timeToRepair)
+                {
+                    CompleteGenerator();
+                }
+            }
+            else
+            {
+                GameManager.Instance.UpdateRepairProgress(false, 0f);
+                GameManager.Instance.SetPromptVisibility(true, "Hold E to Repair");
             }
         }
-        else if (playerInRange && !isHoldingKey)
+        else
         {
             GameManager.Instance.UpdateRepairProgress(false, 0f);
-            GameManager.Instance.SetPromptVisibility(true, "Hold E to Repair");
+            GameManager.Instance.SetPromptVisibility(true, $"Need {GameManager.Instance.pelletsNeeded} {requiredPelletColor} Pellets!");
+        }
+    }
+
+    private bool HasEnoughPellets()
+    {
+        if (GameManager.Instance == null) return false;
+
+        switch (requiredPelletColor)
+        {
+            case PelletColor.Red: return GameManager.Instance.redPellets >= GameManager.Instance.pelletsNeeded;
+            case PelletColor.Pink: return GameManager.Instance.pinkPellets >= GameManager.Instance.pelletsNeeded;
+            case PelletColor.Cyan: return GameManager.Instance.cyanPellets >= GameManager.Instance.pelletsNeeded;
+            case PelletColor.Orange: return GameManager.Instance.orangePellets >= GameManager.Instance.pelletsNeeded;
+            default: return false;
         }
     }
 
@@ -63,7 +88,6 @@ public class Generator : MonoBehaviour
         if (other.CompareTag("Player") && !isRepaired)
         {
             playerInRange = true;
-            GameManager.Instance.SetPromptVisibility(true, "Hold E to Repair");
         }
     }
 
@@ -76,4 +100,6 @@ public class Generator : MonoBehaviour
             GameManager.Instance.UpdateRepairProgress(false, 0f);
         }
     }
+
+    
 }

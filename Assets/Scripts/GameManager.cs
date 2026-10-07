@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int pinkPellets = 0;
     public int cyanPellets = 0;
     public int orangePellets = 0;
-    public int totalNeeded = 25; 
+    public int pelletsNeeded = 25; 
     public int generatorsRepaired = 0;
 
     public Action<bool, string> OnPromptVisibilityChanged;

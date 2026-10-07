@@ -123,13 +123,11 @@ public class GameUIManager : MonoBehaviour
             generatorLabel = hudElement.Q<Label>("GeneratorText");
             
             promptElement = hudElement.Q<VisualElement>("Prompt"); 
-            textElement = hudElement.Q<VisualElement>("TextElement"); 
             
             promptLabel = hudElement.Q<Label>("PromptLabel");
             repairProgressBar = hudElement.Q<ProgressBar>("RepairProgressBar");
             
             if (promptLabel == null) Debug.LogError("PromptLabel is MISSING in UI Builder!");
-            if (textElement == null) Debug.LogWarning("TextElement is missing (this might be okay if you didn't make a background box)");
 
             UpdateUI();
         }
@@ -174,10 +172,10 @@ public class GameUIManager : MonoBehaviour
         if (pelletLabel != null)
         {
             
-            pelletLabel.text = $"Red: {GameManager.Instance.redPellets}/{GameManager.Instance.totalNeeded}\n" +
-                               $"Pink: {GameManager.Instance.pinkPellets}/{GameManager.Instance.totalNeeded}\n" +
-                               $"Cyan: {GameManager.Instance.cyanPellets}/{GameManager.Instance.totalNeeded}\n" +
-                               $"Orange: {GameManager.Instance.orangePellets}/{GameManager.Instance.totalNeeded}";
+            pelletLabel.text = $"Red: {GameManager.Instance.redPellets}/{GameManager.Instance.pelletsNeeded}\n" +
+                               $"Pink: {GameManager.Instance.pinkPellets}/{GameManager.Instance.pelletsNeeded}\n" +
+                               $"Cyan: {GameManager.Instance.cyanPellets}/{GameManager.Instance.pelletsNeeded}\n" +
+                               $"Orange: {GameManager.Instance.orangePellets}/{GameManager.Instance.pelletsNeeded}";
         }
 
         if (generatorLabel != null)
