@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="Stamina.uss" />
+    <ui:ProgressBar name="StaminaBar" low-value="0" high-value="100" value="100" />
+</ui:UXML>

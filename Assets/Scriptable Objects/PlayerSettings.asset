@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f2c663c2a2f8440b7ab705a33c2864, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSettings
-  speed: 2
-  walkSound: {fileID: 8300000, guid: 7754a8644998ad44b8ae1c5e9238a405, type: 3}
+  speed: 1.2
+  sprintMultiplier: 2.5
+  maxStamina: 100
+  staminaDrainRate: 25
+  staminaRegenRate: 15
