@@ -12,6 +12,7 @@ public class Generator : MonoBehaviour
     
     [Header("Visuals")]
     public Light completionLight; 
+    public GameObject roomLights;
     
     private float currentProgress = 0f;
     private bool isRepaired = false;
@@ -75,6 +76,7 @@ public class Generator : MonoBehaviour
         isRepaired = true;
         
         if (completionLight != null) completionLight.enabled = true;
+        if (roomLights != null) roomLights.SetActive(true);
         
         GameManager.Instance.AddGenerator();
         GameManager.Instance.SetPromptVisibility(false);
