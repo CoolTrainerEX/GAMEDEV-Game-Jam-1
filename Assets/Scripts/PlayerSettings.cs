@@ -4,5 +4,5 @@ using UnityEngine;
 public class PlayerSettings : ScriptableObject
 {
     [Header("Movement")]
-    [Min(0)] public float speed = 2;
+    [Min(0)] public float speed = 3;
 }

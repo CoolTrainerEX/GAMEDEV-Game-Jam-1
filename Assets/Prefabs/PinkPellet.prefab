@@ -15381,6 +15381,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3437225339828887100, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437225339828887100, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437225339828887100, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437225339828887100, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -15424,6 +15436,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PinkPellet
       objectReference: {fileID: 0}
+    - target: {fileID: 8972778759169384981, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972778759169384981, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3fdff96290c374b029c0f84e97d4eaa7, type: 2}
+    - target: {fileID: 8972778759169384981, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3fdff96290c374b029c0f84e97d4eaa7, type: 2}
     - target: {fileID: 9193935495724550082, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
       propertyPath: m_Mesh
       value: 

@@ -15424,6 +15424,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedPellet
       objectReference: {fileID: 0}
+    - target: {fileID: 8972778759169384981, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972778759169384981, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ba67506b7abb14168a715bcaf2584856, type: 2}
+    - target: {fileID: 8972778759169384981, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ba67506b7abb14168a715bcaf2584856, type: 2}
     - target: {fileID: 9193935495724550082, guid: ee35a3d9590e34ec49a3390b775064ce, type: 3}
       propertyPath: m_Mesh
       value: 
