@@ -743,6 +743,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 576
   m_Size: {x: 10, y: 0, z: 10}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -1378,6 +1379,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 650
   m_Size: {x: 0.25, y: 0.5, z: 0.25}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -2347,6 +2349,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1193891510}
+    - target: {fileID: 8544327854457924198, guid: 33ea8c54d9ae948469d50447742b55cd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2555,6 +2561,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1916812505}
+    - target: {fileID: 5887769187620582619, guid: bd2d108064ec04f5eb4da924b7046c76, type: 3}
+      propertyPath: m_VersionIndex
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 7921032618113622551, guid: bd2d108064ec04f5eb4da924b7046c76, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.444112
@@ -3401,6 +3411,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 1370
   m_Size: {x: 1, y: 1.4260304, z: 1.0000001}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -4229,6 +4240,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1525091663}
+    - target: {fileID: 2733180026872635349, guid: 9551c6ed335be45cfbc3ec4c8bfb5fdb, type: 3}
+      propertyPath: m_VersionIndex
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 5301443407225262311, guid: 9551c6ed335be45cfbc3ec4c8bfb5fdb, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4662,6 +4677,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 462534248}
+    - target: {fileID: 2459462778546105245, guid: 6003de73b136d4d81b6486b2e0768afd, type: 3}
+      propertyPath: m_VersionIndex
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 5633780224323988735, guid: 6003de73b136d4d81b6486b2e0768afd, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4976,6 +4995,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 504
   m_Size: {x: 2.6782353, y: 2.9136415, z: 0.8067037}
   m_LocalCenter: {x: 0, y: 1.215421, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
