@@ -7,18 +7,15 @@ using UnityEngine;
 public class Pellet : MonoBehaviour
 {
     public PelletColor pelletColor = PelletColor.Red;
-    private AudioSource audio;
-
-    void Start()
-    {
-        audio = GetComponent<AudioSource>();
-    }
 
     private async Awaitable OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.AddPellet(pelletColor);
+
+            var audio = GetComponent<AudioSource>();
+
             audio.Play();
 
             GetComponent<Renderer>().enabled = false;

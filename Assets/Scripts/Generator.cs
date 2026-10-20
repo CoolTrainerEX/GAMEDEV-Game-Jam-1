@@ -4,16 +4,17 @@ using UnityEngine.InputSystem;
 public class Generator : MonoBehaviour
 {
     [Header("Generator Settings")]
-    public float timeToRepair = 10f; 
-    public Key repairKey = Key.E; 
-    
+    public float timeToRepair = 10f;
+    public Key repairKey = Key.E;
+    [SerializeField] private Ghost ghost;
+
     [Header("Pellet Requirements")]
     public PelletColor requiredPelletColor = PelletColor.Red;
-    
+
     [Header("Visuals")]
-    public Light completionLight; 
+    public Light completionLight;
     public GameObject roomLights;
-    
+
     private float currentProgress = 0f;
     private bool isRepaired = false;
     private bool playerInRange = false;
@@ -29,7 +30,7 @@ public class Generator : MonoBehaviour
 
         bool hasEnough = HasEnoughPellets();
         bool isHoldingKey = Keyboard.current != null && Keyboard.current[repairKey].isPressed;
-        
+
         if (hasEnough)
         {
             if (isHoldingKey)
@@ -37,7 +38,7 @@ public class Generator : MonoBehaviour
                 currentProgress += Time.deltaTime;
 
                 GameManager.Instance.UpdateRepairProgress(true, currentProgress / timeToRepair);
-                GameManager.Instance.SetPromptVisibility(false); 
+                GameManager.Instance.SetPromptVisibility(false);
 
                 if (currentProgress >= timeToRepair)
                 {
@@ -74,14 +75,14 @@ public class Generator : MonoBehaviour
     void CompleteGenerator()
     {
         isRepaired = true;
-        
+
         if (completionLight != null) completionLight.enabled = true;
         if (roomLights != null) roomLights.SetActive(true);
-        
+
         GameManager.Instance.AddGenerator();
         GameManager.Instance.SetPromptVisibility(false);
         GameManager.Instance.UpdateRepairProgress(false, 0f);
-        
+        _ = ghost.Die();
         Debug.Log("Generator Fully Repaired!");
     }
 
@@ -103,5 +104,5 @@ public class Generator : MonoBehaviour
         }
     }
 
-    
+
 }
