@@ -15,5 +15,7 @@ MonoBehaviour:
   speed: 1.2
   sprintMultiplier: 2.5
   maxStamina: 100
-  staminaDrainRate: 25
-  staminaRegenRate: 15
+  staminaDrainRate: 15
+  staminaRegenRate: 20
+  regenDelay: 1
+  minStaminaToSprint: 20
