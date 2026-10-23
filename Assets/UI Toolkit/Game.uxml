@@ -1,8 +1,30 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="HUD" src="project://database/Assets/UI%20Toolkit/HUD.uxml?fileID=9197481963319205126&amp;guid=de31f40da7d40a240b7c341957466d74&amp;type=3#HUD"/>
     <ui:Template name="Pause" src="project://database/Assets/UI%20Toolkit/Pause.uxml?fileID=9197481963319205126&amp;guid=72666ee7a3a91e542a241baab79b9e3d&amp;type=3#Pause"/>
+    
     <Style src="project://database/Assets/UI%20Toolkit/Main.uss?fileID=7433441132597879392&amp;guid=983bcf173b7a8654aa56edc791fa5771&amp;type=3#Main"/>
     <Style src="project://database/Assets/UI%20Toolkit/Game.uss?fileID=7433441132597879392&amp;guid=c8bc8d40edd0f9c48bbc3f078d63b0bf&amp;type=3#Game"/>
+
     <ui:Instance template="Pause" name="Pause" style="display: none;"/>
-    <ui:Instance template="HUD" name="HUD" style="overflow: hidden; display: flex; flex-basis: auto; left: 46px;"/>
+    <ui:Instance template="HUD" name="HUD" style="overflow: hidden; display: flex; flex-basis: auto; width: 100%; height: 100%; position: absolute;"/>
+
+    <!-- JUMPSCARE / DEATH OVERLAY -->
+    <ui:VisualElement name="JumpscareOverlay" style="position: absolute; width: 100%; height: 100%; background-color: rgba(139, 0, 0, 0.85); align-items: center; justify-content: center; display: none;">
+        <ui:Label text="YOU DIED" name="DeathText" style="color: rgb(255, 0, 0); font-size: 64px; -unity-font-style: bold; -unity-text-align: middle-center;"/>
+    </ui:VisualElement>
+
+    <!-- GAME OVER SCREEN -->
+    <ui:VisualElement name="GameOver" style="position: absolute; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; display: none;">
+        <ui:Label text="GAME OVER" style="color: rgb(255, 0, 0); font-size: 48px; -unity-font-style: bold; margin-bottom: 30px;"/>
+        <ui:Button text="Try Again" name="Restart" style="width: 200px; height: 45px; margin-bottom: 15px; font-size: 18px;"/>
+        <ui:Button text="Exit to Main Menu" name="Exit" style="width: 200px; height: 45px; font-size: 18px;"/>
+    </ui:VisualElement>
+
+    <!-- WIN SCREEN OVERLAY -->
+    <ui:VisualElement name="WinScreen" style="position: absolute; width: 100%; height: 100%; background-color: rgba(5, 15, 10, 0.92); align-items: center; justify-content: center; display: none;">
+        <ui:Label text="YOU ESCAPED!" style="color: rgb(0, 255, 180); font-size: 56px; -unity-font-style: bold; margin-bottom: 8px;"/>
+        <ui:Label text="All 4 Generators Have Been Repaired" style="color: rgb(200, 230, 215); font-size: 18px; margin-bottom: 30px;"/>
+        <ui:Button text="Play Again" name="WinRestart" style="width: 200px; height: 45px; margin-bottom: 15px; font-size: 18px;"/>
+        <ui:Button text="Main Menu" name="WinExit" style="width: 200px; height: 45px; font-size: 18px;"/>
+    </ui:VisualElement>
 </ui:UXML>

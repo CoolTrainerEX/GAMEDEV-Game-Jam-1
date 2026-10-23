@@ -2391,7 +2391,7 @@ Transform:
   m_GameObject: {fileID: 63146921}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -25.100014, y: -1.35, z: 15.203218}
+  m_LocalPosition: {x: -25.100014, y: -1.38, z: 15.203218}
   m_LocalScale: {x: 2.4999998, y: 2.5, z: 2.4999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15231,7 +15231,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 1
+  m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
@@ -16784,12 +16784,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150aee22f1bae45d9b1effcf100ff37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  settings: {fileID: 11400000, guid: 409fd77f21daeef45b04472bce64d211, type: 2}
   redPellets: 0
   pinkPellets: 0
   cyanPellets: 0
   orangePellets: 0
   pelletsNeeded: 20
   generatorsRepaired: 0
+  currentLives: 3
+  maxLives: 3
+  isDying: 0
+  playerTransform: {fileID: 1133610538}
+  ghostTransforms: []
+  spawnPoint: {fileID: 1965111965}
+  totalGeneratorsNeeded: 4
+  isGameWon: 0
 --- !u!4 &486464048
 Transform:
   m_ObjectHideFlags: 0
@@ -89643,7 +89652,7 @@ MonoBehaviour:
   timeToRepair: 5
   repairKey: 19
   ghost: {fileID: 1852710348}
-  requiredPelletColor: 0
+  requiredPelletColor: 3
   completionLight: {fileID: 1513171991}
   roomLights: {fileID: 10577193}
 --- !u!135 &834087946
@@ -92570,7 +92579,7 @@ MonoBehaviour:
   timeToRepair: 5
   repairKey: 19
   ghost: {fileID: 63146923}
-  requiredPelletColor: 0
+  requiredPelletColor: 1
   completionLight: {fileID: 1551889486}
   roomLights: {fileID: 44266345}
 --- !u!135 &938718931
@@ -94496,6 +94505,7 @@ GameObject:
   - component: {fileID: 1003888264}
   - component: {fileID: 1003888263}
   - component: {fileID: 1003888262}
+  - component: {fileID: 1003888267}
   m_Layer: 5
   m_Name: PanelRenderer
   m_TagString: Untagged
@@ -94528,6 +94538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameUIManager
   mixer: {fileID: 24100000, guid: aade08d342b47944da23d4783fc2b3b4, type: 2}
+  settings: {fileID: 11400000, guid: 409fd77f21daeef45b04472bce64d211, type: 2}
+  jumpscareAudioSource: {fileID: 1003888267}
 --- !u!114 &1003888264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94613,6 +94625,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1003888267
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003888261}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1006477984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124252,6 +124361,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 404c174ffa68e074d85c5e29fb4c3f6a, type: 3}
+--- !u!1 &1965111964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1965111965}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1965111965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965111964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4, y: 1.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1967309400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124441,7 +124581,7 @@ MonoBehaviour:
   timeToRepair: 5
   repairKey: 19
   ghost: {fileID: 1934196362}
-  requiredPelletColor: 0
+  requiredPelletColor: 2
   completionLight: {fileID: 137391303}
   roomLights: {fileID: 1344487626}
 --- !u!135 &1967409207
@@ -341387,3 +341527,4 @@ SceneRoots:
   - {fileID: 960039670}
   - {fileID: 690567117}
   - {fileID: 2029755135}
+  - {fileID: 1965111965}
