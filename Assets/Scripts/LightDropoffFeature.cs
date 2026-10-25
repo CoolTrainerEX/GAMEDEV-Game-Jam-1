@@ -50,28 +50,21 @@ public class LightDropoffFeature : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // Use custom origin (e.g., Camera) or default to light position
         Transform originTransform = raycastOrigin != null ? raycastOrigin : transform;
         Ray ray = new Ray(originTransform.position, originTransform.forward);
 
-        // Invert mask so checked layers in 'ignoreLayers' are excluded from raycast collisions
         int layerMask = ~ignoreLayers;
 
         float targetIntensity = maxIntensity;
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, layerMask))
         {
-            // Map the hit distance between minDistance (0.0) and maxDistance (1.0)
             float t = Mathf.InverseLerp(minDistance, maxDistance, hit.distance);
-
-            // Interpolate target intensity based on proximity
             targetIntensity = Mathf.Lerp(minIntensity, maxIntensity, t);
         }
 
-        // Smoothly transition current intensity toward target intensity
         currentIntensity = Mathf.Lerp(currentIntensity, targetIntensity, Time.deltaTime * smoothSpeed);
 
-        // Apply intensity update (supports both HDRP and standard Light components)
         if (hdLightData != null)
         {
             hdLightData.intensity = currentIntensity;
