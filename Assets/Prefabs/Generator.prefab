@@ -716,8 +716,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Generator
   timeToRepair: 3
   repairKey: 19
+  ghost: {fileID: 0}
   requiredPelletColor: 0
   completionLight: {fileID: 2057926397722972739}
+  roomLights: {fileID: 0}
 --- !u!1 &5326168029488949365
 GameObject:
   m_ObjectHideFlags: 0

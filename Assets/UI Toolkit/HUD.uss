@@ -1,1 +1,66 @@
-:root {}
+.hud-panel {
+    background-color: rgba(12, 12, 18, 0.85);
+    border-color: rgba(255, 212, 41, 0.5);
+    border-width: 1px;
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    width: 220px;
+}
+
+.hud-title {
+    color: rgb(255, 212, 41);
+    font-size: 13px;
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(255, 212, 41, 0.2);
+    padding-bottom: 4px;
+}
+
+.pellet-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.pellet-badge {
+    flex-direction: row;
+    align-items: center;
+}
+
+.pellet-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+.dot-red { background-color: rgb(255, 50, 50); }
+.dot-pink { background-color: rgb(255, 184, 255); }
+.dot-cyan { background-color: rgb(0, 255, 255); }
+.dot-orange { background-color: rgb(255, 184, 82); }
+
+.pellet-label {
+    color: rgb(220, 220, 220);
+    font-size: 13px;
+}
+
+.pellet-count {
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    -unity-font-style: bold;
+}
+
+.generator-box {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.generator-value {
+    color: rgb(0, 255, 200);
+    font-size: 18px;
+    -unity-font-style: bold;
+}

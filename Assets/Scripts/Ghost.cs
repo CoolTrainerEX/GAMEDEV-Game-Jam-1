@@ -12,24 +12,34 @@ public class Ghost : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.position);
+        if (GameManager.Instance != null && GameManager.Instance.isDying)
+        {
+            agent.isStopped = true;
+            return;
+        }
+
+        if (agent.isActiveAndEnabled && target != null)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(target.position);
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // TODO Game over
-            Debug.Log("Game over!");
+            if (GameManager.Instance != null && !GameManager.Instance.isDying)
+            {
+                GameManager.Instance.PlayerTouchedGhost(transform);
+            }
         }
     }
 
@@ -37,7 +47,10 @@ public class Ghost : MonoBehaviour
     {
         var audio = GetComponent<AudioSource>();
 
-        audio.PlayOneShot(settings.ghostDieSound);
+        if (audio != null && settings != null && settings.ghostDieSound != null)
+        {
+            audio.PlayOneShot(settings.ghostDieSound);
+        }
 
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;

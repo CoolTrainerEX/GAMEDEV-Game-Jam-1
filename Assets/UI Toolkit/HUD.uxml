@@ -1,12 +1,70 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Main.uss?fileID=7433441132597879392&amp;guid=983bcf173b7a8654aa56edc791fa5771&amp;type=3#Main"/>
     <Style src="project://database/Assets/UI%20Toolkit/HUD.uss?fileID=7433441132597879392&amp;guid=2f24b82f3c45d1c43be303ff2ace4d9b&amp;type=3#HUD"/>
-    <ui:VisualElement name="Text" picking-mode="Ignore" style="flex-grow: 1; left: auto; max-width: 285px; max-height: 195px; bottom: auto; top: 224px; display: flex;">
-        <ui:Label text="Pellets: " name="PelletText" style="width: 190px; background-color: rgba(255, 255, 255, 0.196); top: auto;"/>
-        <ui:Label text="Generators:" name="GeneratorText" style="background-color: rgba(255, 255, 255, 0.196); width: 190px; height: 25px; top: auto;"/>
+
+    <!-- LEFT HUD WRAPPER -->
+    <ui:VisualElement name="Text" picking-mode="Ignore" style="position: absolute; top: 20px; left: 20px;">
+        
+        <!-- PELLETS PANEL -->
+        <ui:VisualElement class="hud-panel">
+            <ui:Label text="PELLETS COLLECTED" class="hud-title"/>
+            
+            <ui:VisualElement class="pellet-item">
+                <ui:VisualElement class="pellet-badge">
+                    <ui:VisualElement class="pellet-dot dot-red"/>
+                    <ui:Label text="Red" class="pellet-label"/>
+                </ui:VisualElement>
+                <ui:Label text="0 / 25" name="RedPelletText" class="pellet-count"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="pellet-item">
+                <ui:VisualElement class="pellet-badge">
+                    <ui:VisualElement class="pellet-dot dot-pink"/>
+                    <ui:Label text="Pink" class="pellet-label"/>
+                </ui:VisualElement>
+                <ui:Label text="0 / 25" name="PinkPelletText" class="pellet-count"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="pellet-item">
+                <ui:VisualElement class="pellet-badge">
+                    <ui:VisualElement class="pellet-dot dot-cyan"/>
+                    <ui:Label text="Cyan" class="pellet-label"/>
+                </ui:VisualElement>
+                <ui:Label text="0 / 25" name="CyanPelletText" class="pellet-count"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="pellet-item">
+                <ui:VisualElement class="pellet-badge">
+                    <ui:VisualElement class="pellet-dot dot-orange"/>
+                    <ui:Label text="Orange" class="pellet-label"/>
+                </ui:VisualElement>
+                <ui:Label text="0 / 25" name="OrangePelletText" class="pellet-count"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- GENERATORS PANEL -->
+        <ui:VisualElement class="hud-panel">
+            <ui:VisualElement class="generator-box">
+                <ui:Label text="GENERATORS" class="hud-title" style="margin-bottom: 0; border-bottom-width: 0;"/>
+                <ui:Label text="0" name="GeneratorText" class="generator-value"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
     </ui:VisualElement>
-    <ui:VisualElement picking-mode="Ignore" name="Prompt" style="flex-grow: 1; align-items: center; justify-content: center; display: none; top: -35px;">
-        <ui:Label text="Hold E " name="PromptLabel" enabled="true" style="width: 189px; background-color: rgba(255, 255, 255, 0.196); -unity-text-align: lower-center; white-space: normal; position: relative; top: auto; left: 0; bottom: 0; text-overflow: ellipsis; right: auto; display: flex; overflow: visible; justify-content: center;"/>
-        <ui:ProgressBar value="0" title="GeneratorProgress" name="RepairProgressBar" high-value="1" style="right: auto; left: auto; max-height: 0%; max-width: 100%; display: flex; bottom: 0; flex-direction: row-reverse; align-self: center; align-items: flex-start; justify-content: space-around; top: auto; width: 145px; background-color: rgb(255, 247, 247); -unity-text-align: upper-left;"/>
+
+    <!-- PAC-MAN LIVES CONTAINER -->
+    <ui:VisualElement name="LivesWrapper" picking-mode="Ignore" style="position: absolute; top: 20px; right: 20px; align-items: flex-end;">
+        <ui:Label text="LIVES" class="hud-title" style="margin-bottom: 4px;"/>
+        <ui:VisualElement name="LivesContainer" style="flex-direction: row; justify-content: flex-end;">
+            <ui:VisualElement name="Life1" style="width: 28px; height: 28px; background-color: rgb(255, 255, 0); border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; margin-left: 6px;"/>
+            <ui:VisualElement name="Life2" style="width: 28px; height: 28px; background-color: rgb(255, 255, 0); border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; margin-left: 6px;"/>
+            <ui:VisualElement name="Life3" style="width: 28px; height: 28px; background-color: rgb(255, 255, 0); border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; margin-left: 6px;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+    <!-- PROMPT & REPAIR PROGRESS -->
+    <ui:VisualElement picking-mode="Ignore" name="Prompt" style="position: absolute; bottom: 80px; width: 100%; align-items: center; justify-content: center; display: none;">
+        <ui:Label text="Hold E to Repair" name="PromptLabel" enabled="true" style="width: 220px; background-color: rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); -unity-text-align: middle-center; padding: 6px; font-size: 14px; margin-bottom: 5px; border-radius: 6px;"/>
+        <ui:ProgressBar value="0" title="Generator Progress" name="RepairProgressBar" high-value="1" style="width: 220px; height: 20px; display: flex;"/>
     </ui:VisualElement>
 </ui:UXML>

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: Assembly-CSharp::GameSettings
   ghostDieSound: {fileID: 8300000, guid: 5dd53bbe0506d6f4b8797190b1671fa6, type: 3}
+  jumpscareSound: {fileID: 8300000, guid: 771232ea86269094d9cb9452c033119a, type: 3}
+  playerHitSound: {fileID: 0}
+  maxLives: 3

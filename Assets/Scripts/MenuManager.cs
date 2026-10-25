@@ -32,7 +32,7 @@ public class MenuManager : MonoBehaviour
 
     private static void OnPlay()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Map");
     }
 
     private static void OnExit()
